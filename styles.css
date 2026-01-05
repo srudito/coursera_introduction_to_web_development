@@ -207,8 +207,11 @@ button[type="submit"]:hover {
 
 @media (max-width: 768px) {
   .hamburger {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     cursor: pointer;
+    z-index: 1001;
   }
   
   .hamburger span {
@@ -216,31 +219,62 @@ button[type="submit"]:hover {
     width: 25px;
     height: 3px;
     background: var(--text-dark);
-    margin: 5px 0;
     border-radius: 2px;
+    transition: var(--transition);
   }
-
-  nav {
+  
+   nav {
     position: fixed;
     top: 80px;
     left: -100%;
     width: 100%;
     height: calc(100vh - 80px);
     background: white;
+    
+    display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    justify-content: flex-start;
+    padding-top: 60px;
+    gap: 30px; 
+    
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
   }
+
+  /* Reset horizontal margins and styles for vertical mobile links */
+  nav a {
+    margin-left: 0;
+    font-size: 1.1rem;      /* Reduced from 1.5rem for a cleaner look */
+    padding: 10px 20px;    /* Provides a 44px tap height (Accessible for 2026) */
+    width: auto;           /* Removes full-width stretching */
+    text-align: center;
+    border-bottom: none;   /* Cleaner look for vertical lists */
+  }  
+/*  backup
+  nav a {
+    margin-left: 0; 
+    font-size: 1.5rem;
+    width: 80%; 
+    text-align: center;
+    padding: 12px 0;
+  }
+*/
 
   .menu-toggle:checked ~ nav {
     left: 0;
+  }
+
+  /* Accessibility: Prevent scrolling when menu is open */
+  body:has(.menu-toggle:checked) {
+    overflow: hidden;
   }
 
   #about h2 {
     font-size: 2.2rem;
   }
 }
+
 
 /* 8. FOOTER */
 footer {
@@ -288,3 +322,26 @@ input.is-invalid, textarea.is-invalid { border-color: #b00020; }
   width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+.toast-popup {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #28a745; /* Success Green */
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  transform: translateY(100px); /* Start hidden below screen */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast-popup.is-visible {
+  transform: translateY(0); /* Pop up into view */
+}
+
+.toast-content { display: flex; align-items: center; gap: 12px; }
+.toast-icon { font-size: 1.2rem; font-weight: bold; }
