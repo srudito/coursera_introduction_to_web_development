@@ -245,21 +245,12 @@ button[type="submit"]:hover {
   /* Reset horizontal margins and styles for vertical mobile links */
   nav a {
     margin-left: 0;
-    font-size: 1.1rem;      /* Reduced from 1.5rem for a cleaner look */
-    padding: 10px 20px;    /* Provides a 44px tap height (Accessible for 2026) */
-    width: auto;           /* Removes full-width stretching */
+    font-size: 1.1rem;      
+    padding: 10px 20px;   
+    width: auto;           
     text-align: center;
-    border-bottom: none;   /* Cleaner look for vertical lists */
+    border-bottom: none;  
   }  
-/*  backup
-  nav a {
-    margin-left: 0; 
-    font-size: 1.5rem;
-    width: 80%; 
-    text-align: center;
-    padding: 12px 0;
-  }
-*/
 
   .menu-toggle:checked ~ nav {
     left: 0;
